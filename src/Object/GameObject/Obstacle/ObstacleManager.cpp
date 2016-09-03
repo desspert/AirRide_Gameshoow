@@ -3,6 +3,7 @@
 #include "../GameObjectEntities.h"
 //#include "../CharaBase/Player/Player.h"
 #include "../CharaBase/Enemy/EnemyHolder/EnemyHolder.h"
+#include "../Camera/Camera.h"
 
 
 using namespace ci;
@@ -19,8 +20,8 @@ void ar::ObstacleManager::setup()
 
 void ar::ObstacleManager::update()
 {
-	/*std::for_each(pop_areas.begin(), pop_areas.end(),
-				  [](ObstaclePopArea pop_areas_) {pop_areas_.update(); });*/
+	std::for_each(pop_areas.begin(), pop_areas.end(),
+				  [](ObstaclePopArea pop_areas_) {pop_areas_.update(); });
 
 
 	auto start = std::chrono::system_clock::now();
@@ -30,7 +31,9 @@ void ar::ObstacleManager::update()
 	auto end = std::chrono::system_clock::now();
 	auto d = end - start;
 	auto msec = std::chrono::duration_cast<std::chrono::milliseconds>(d).count();
-	console() << msec << std::endl;
+	//console() << msec << std::endl;
+
+	setCameraPos(camera_pos);
 }
 
 void ar::ObstacleManager::draw()
@@ -39,7 +42,6 @@ void ar::ObstacleManager::draw()
 				  [&](ObstaclePopArea pop_areas_) {
 		if (sphereToSphere(player->getWorldPoisition(), 200, pop_areas_.transform.position, 1))
 			pop_areas_.draw();
-
 	});
 
 }
@@ -48,12 +50,18 @@ void ar::ObstacleManager::transDraw()
 {
 	/*std::for_each(pop_areas.begin(), pop_areas.end(),
 				  [](ObstaclePopArea pop_areas_) {
-		pop_areas_.transDraw(); 
+		pop_areas_.transDraw();
 	});*/
 }
 
+void ar::ObstacleManager::setCameraPos(const ci::Vec3f & camera_pos_)
+{
+	std::for_each(pop_areas.begin(), pop_areas.end(),
+				  [&](ObstaclePopArea pop_areas_) {pop_areas_.setCameraPos(camera_pos_); });
+}
 
-ar::Obstacle ar::ObstacleManager::getNearestObstacle(ci::Vec3f target_)
+
+std::shared_ptr<ar::Obstacle> ar::ObstacleManager::getNearestObstacle(ci::Vec3f target_)
 {
 	float minvec = std::numeric_limits<float>::max();
 	ObstaclePopArea nearest_pop_area;
@@ -90,15 +98,14 @@ void ar::ObstacleManager::isEnemysInObstacleArea()
 	std::for_each(pop_areas.begin(), pop_areas.end(),
 				  [&](ObstaclePopArea pop_area_)
 	{
-		std::for_each(enemy_holder->getEnemys().begin(), enemy_holder->getEnemys().end(),
-					  [&](Enemy enemy)
+		Vec3f enemy_pos = (*enemy_holder->getActiveEnemys().begin())->getWorldPoisition();
+		float enemy_range = (*enemy_holder->getActiveEnemys().begin())->getCollisionCirclerad();
+
+		if (sphereToSphere(pop_area_.transform.position, pop_area_.getPopRange(),
+						   enemy_pos, enemy_range))
 		{
-			if (sphereToSphere(pop_area_.transform.position, pop_area_.getPopRange(),
-							   enemy.getWorldPoisition(), enemy.getCollisionCirclerad()))
-			{
-				enemy.inObstacleArea();
-			}
-		});
+			(*enemy_holder->getActiveEnemys().begin())->inObstacleArea();
+		}
 	});
 }
 

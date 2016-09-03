@@ -110,6 +110,8 @@
     <ClCompile Include="..\src\MainApp.cpp" />
     <ClCompile Include="..\src\Object\Component\Component.cpp" />
     <ClCompile Include="..\src\Object\Component\Components\Transform.cpp" />
+    <ClCompile Include="..\src\Object\GameObject\Boss\Boss.cpp" />
+    <ClCompile Include="..\src\Object\GameObject\Boss\Bullet\Bullet.cpp" />
     <ClCompile Include="..\src\Object\GameObject\Camera\Camera.cpp" />
     <ClCompile Include="..\src\Object\GameObject\CharaBase\CharaBase.cpp" />
     <ClCompile Include="..\src\Object\GameObject\CharaBase\Enemy\Enemy.cpp" />
@@ -123,6 +125,7 @@
     <ClCompile Include="..\src\Object\GameObject\Obstacle\Obstacle.cpp" />
     <ClCompile Include="..\src\Object\GameObject\Obstacle\ObstacleManager.cpp" />
     <ClCompile Include="..\src\Object\GameObject\Obstacle\ObstaclePopArea.cpp" />
+    <ClCompile Include="..\src\Object\GameObject\Obstacle\Particle\Particle.cpp" />
     <ClCompile Include="..\src\Object\GameObject\SignPost\SignPost.cpp" />
     <ClCompile Include="..\src\Object\GameObject\SignPost\SignPostManager.cpp" />
     <ClCompile Include="..\src\Object\GameObject\Skydome\Skydome.cpp" />
@@ -133,6 +136,7 @@
     <ClCompile Include="..\src\Scene\SceneCategory\Title.cpp" />
     <ClCompile Include="..\src\Scene\SceneManager\CreateScene.cpp" />
     <ClCompile Include="..\src\Share\Easing\Easing.cpp" />
+    <ClCompile Include="..\src\Share\Share.cpp" />
     <ClCompile Include="..\src\UI\Types\EasingType.cpp" />
     <ClCompile Include="..\src\UI\Types\UIObjects.cpp" />
     <ClCompile Include="..\src\UI\Types\UIState.cpp" />
@@ -140,11 +144,11 @@
     <ClCompile Include="..\src\UI\UIBase.cpp" />
     <ClCompile Include="..\src\UI\UIManager\UIManager.cpp" />
     <ClCompile Include="..\src\UI\UIPlate\UIPlate.cpp" />
-    <ClCompile Include="..\src\UI\UIs\BarCollisionUI\BarCollisionUI.cpp" />
     <ClCompile Include="..\src\UI\UIs\CollisionUI\CollisionUI.cpp" />
+    <ClCompile Include="..\src\UI\UIs\DecrementTimeUI\DecrementTimeUI.cpp" />
     <ClCompile Include="..\src\UI\UIs\FontUI\FontUI.cpp" />
     <ClCompile Include="..\src\UI\UIs\GaugeUI\GaugeUI.cpp" />
-    <ClCompile Include="..\src\UI\UIs\TextureUI\TextureUI.cpp" />
+    <ClCompile Include="..\src\UI\UIs\IncrementTimeUI\IncrementTimeUI.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Input\Gamepad\Gamepad.h" />
@@ -158,6 +162,8 @@
     <ClInclude Include="..\src\Object\Component\Components\Material.h" />
     <ClInclude Include="..\src\Object\Component\Components\Texture.h" />
     <ClInclude Include="..\src\Object\Component\Components\Transform.h" />
+    <ClInclude Include="..\src\Object\GameObject\Boss\Boss.h" />
+    <ClInclude Include="..\src\Object\GameObject\Boss\Bullet\Bullet.h" />
     <ClInclude Include="..\src\Object\GameObject\Camera\Camera.h" />
     <ClInclude Include="..\src\Object\GameObject\CharaBase\CharaBase.h" />
     <ClInclude Include="..\src\Object\GameObject\CharaBase\Enemy\Enemy.h" />
@@ -171,6 +177,7 @@
     <ClInclude Include="..\src\Object\GameObject\Obstacle\Obstacle.h" />
     <ClInclude Include="..\src\Object\GameObject\Obstacle\ObstaclePopArea.h" />
     <ClInclude Include="..\src\Object\GameObject\Obstacle\ObstacleManager.h" />
+    <ClInclude Include="..\src\Object\GameObject\Obstacle\Particle\Particle.h" />
     <ClInclude Include="..\src\Object\GameObject\SignPost\SignPost.h" />
     <ClInclude Include="..\src\Object\GameObject\SignPost\SignPostManager.h" />
     <ClInclude Include="..\src\Object\GameObject\Skydome\Skydome.h" />
@@ -183,10 +190,10 @@
     <ClInclude Include="..\src\Scene\SceneManager\CreateScene.h" />
     <ClInclude Include="..\src\Scene\SceneManager\SceneBase.h" />
     <ClInclude Include="..\src\Scene\SceneManager\SceneManager.h" />
-    <ClInclude Include="..\src\Share.h" />
     <ClInclude Include="..\src\Share\Easing\Easing.h" />
     <ClInclude Include="..\src\Share\FrameTimer.h" />
     <ClInclude Include="..\src\Share\Interface\Interface.h" />
+    <ClInclude Include="..\src\Share\Share.h" />
     <ClInclude Include="..\src\Share\Time.h" />
     <ClInclude Include="..\src\TaskManager\ObjDataManager.h" />
     <ClInclude Include="..\src\TaskManager\SoundManager.h" />
@@ -200,11 +207,11 @@
     <ClInclude Include="..\src\UI\UIBase.h" />
     <ClInclude Include="..\src\UI\UIManager\UIManager.h" />
     <ClInclude Include="..\src\UI\UIPlate\UIPlate.h" />
-    <ClInclude Include="..\src\UI\UIs\BarCollisionUI\BarCollisionUI.h" />
     <ClInclude Include="..\src\UI\UIs\CollisionUI\CollisionUI.h" />
+    <ClInclude Include="..\src\UI\UIs\DecrementTimeUI\DecrementTimeUI.h" />
     <ClInclude Include="..\src\UI\UIs\FontUI\FontUI.h" />
     <ClInclude Include="..\src\UI\UIs\GaugeUI\GaugeUI.h" />
-    <ClInclude Include="..\src\UI\UIs\TextureUI\TextureUI.h" />
+    <ClInclude Include="..\src\UI\UIs\IncrementTimeUI\IncrementTimeUI.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

@@ -11,6 +11,11 @@ ar::Obstacle::Obstacle(const ci::Vec3f& position_, float radius_)
 	radius = radius_;
 	transform.position = position_;
 	setup();
+
+	is_bomb = false;
+	is_erase = false;
+	respawn_count = 200;
+	count = 0;
 }
 
 void ar::Obstacle::setup()
@@ -26,6 +31,19 @@ void ar::Obstacle::setup()
 
 void ar::Obstacle::update()
 {
+	if (is_bomb)
+	{
+		if (count == 0)
+			particle.push_back(std::make_shared<ParticleController>(ParticleController(transform.position)));
+		count++;
+		if (count > respawn_count)
+		{
+			is_erase = true;
+			particle.clear();
+		}
+		std::for_each(particle.begin(), particle.end(),
+					  [](std::shared_ptr<ParticleController> ptc_) {ptc_->update(); });
+	}
 }
 
 void ar::Obstacle::draw()
@@ -33,9 +51,28 @@ void ar::Obstacle::draw()
 	drawBegin();
 	pushModelView();
 
-	gl::scale(0.04, 0.04, 0.04);
-	gl::draw(ObjDataGet.find("obstacle"));
+	if (is_bomb)
+		std::for_each(particle.begin(), particle.end(),
+					  [&](std::shared_ptr<ParticleController> ptc_) {ptc_->draw(); });
+	else
+	{
+		gl::scale(0.04, 0.04, 0.04);
+
+		gl::draw(ObjDataGet.find("obstacle"));
+	}
+
 
 	popModelView();
 	drawEnd();
+}
+
+void ar::Obstacle::setCameraPos(const ci::Vec3f & camera_pos_)
+{
+	std::for_each(particle.begin(), particle.end(),
+				  [&](std::shared_ptr<ParticleController> ptc_) {ptc_->setCameraPos(camera_pos_); });
+}
+
+void ar::Obstacle::bomb()
+{
+	is_bomb = true;
 }

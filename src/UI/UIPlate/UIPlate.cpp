@@ -28,7 +28,7 @@ void UIPlate::titleSetup()
 	ui_data["Y"]->Active();
 	ui_data["!"]->Active();
 	ui_data["スタート"]->Active();
-	
+
 }
 
 void UIPlate::titleUpdate()
@@ -36,7 +36,7 @@ void UIPlate::titleUpdate()
 	for (auto it = UIObjects::get().begin(); it != UIObjects::get().end(); it++) {
 		ui_data[(*it)]->update();
 	}
-	
+
 }
 
 void UIPlate::titleDraw()
@@ -50,26 +50,26 @@ void UIPlate::titleDraw()
 
 				ci::gl::translate(0.0f, 0.0f, -3.0f);
 				gl::drawString(ui_data[(*it)]->fontGetText(),
-					Vec2f(ui_data[(*it)]->getPosX(), ui_data[(*it)]->getPosY()),
-					Color(ui_data[(*it)]->getColorR(),
-						ui_data[(*it)]->getColorG(),
-						ui_data[(*it)]->getColorB()),
-					font[(*it)]);
+							   Vec2f(ui_data[(*it)]->getPosX(), ui_data[(*it)]->getPosY()),
+							   Color(ui_data[(*it)]->getColorR(),
+									 ui_data[(*it)]->getColorG(),
+									 ui_data[(*it)]->getColorB()),
+							   font[(*it)]);
 
 				ci::gl::popModelView();
 				continue;
 			}
-			if (ui_data[(*it)]->getUIType() == UITYPE::IncrementTimeUI||
+			if (ui_data[(*it)]->getUIType() == UITYPE::IncrementTimeUI ||
 				ui_data[(*it)]->getUIType() == UITYPE::DecrementTimeUI) {
 				ci::gl::pushModelView();
 
 				ci::gl::translate(0.0f, 0.0f, -3.0f);
 				gl::drawString(ui_data[(*it)]->timeGetMinutes() + ":" + ui_data[(*it)]->timeGetSeconds() + ":" + ui_data[(*it)]->timeGetFlame(),
-					Vec2f(ui_data[(*it)]->getPosX(), ui_data[(*it)]->getPosY()),
-					Color(ui_data[(*it)]->getColorR(),
-						ui_data[(*it)]->getColorG(),
-						ui_data[(*it)]->getColorB()),
-					font[(*it)]);
+							   Vec2f(ui_data[(*it)]->getPosX(), ui_data[(*it)]->getPosY()),
+							   Color(ui_data[(*it)]->getColorR(),
+									 ui_data[(*it)]->getColorG(),
+									 ui_data[(*it)]->getColorB()),
+							   font[(*it)]);
 
 				ci::gl::popModelView();
 				continue;
@@ -80,7 +80,7 @@ void UIPlate::titleDraw()
 			ci::gl::translate(0.0f, 0.0f, -3.0f);
 			ci::gl::color(ui_data[(*it)]->getColorR(), ui_data[(*it)]->getColorG(), ui_data[(*it)]->getColorB(), ui_data[(*it)]->getColorA());
 			TEX.get((*it)).enableAndBind();
-			
+
 			ci::gl::drawSolidRect(
 				ci::Rectf(ci::Vec2f(
 					ui_data[(*it)]->getPosX(),
@@ -88,7 +88,7 @@ void UIPlate::titleDraw()
 					ci::Vec2f(
 						ui_data[(*it)]->getPosX() + ui_data[(*it)]->getSizeX(),
 						ui_data[(*it)]->getPosY() + ui_data[(*it)]->getSizeY())));
-			
+
 			TEX.get((*it)).disable();
 
 			ci::gl::popModelView();
@@ -144,9 +144,10 @@ void UIPlate::gameMainSetup()
 	ui_data["プレイヤーポジション"]->Active();
 	//ui_data["ダッシュゲージ"]->Active();
 	ui_data["ポジションバー"]->Active();
-	
+
 	ui_data["三"]->Active();
 	SoundGet.find("Count_1")->start();
+	player->setIsStop(true);
 }
 float a = 0;
 void UIPlate::gameMainUpdate() {
@@ -165,15 +166,17 @@ void UIPlate::gameMainUpdate() {
 		ui_data["GO"]->Active();
 		SoundGet.find("Count_1")->stop();
 		SoundGet.find("Count_2")->start();
+		player->setIsStop(false);
+		enemyholder->start();
 	}
 	if (game_count == 240) {
 		ui_data["制限時間"]->Active();
 		ui_data["制限時間"]->timeStart();
 	}
-	
+
 	ui_data["制限時間"]->timeUpdate();
-	
-	
+
+
 	for (auto it = UIObjects::get().begin(); it != UIObjects::get().end(); it++) {
 		ui_data[(*it)]->update();
 	}
@@ -182,9 +185,9 @@ void UIPlate::gameMainUpdate() {
 	ui_data["OK"]->Idle();
 	//if (ui_data["ダッシュゲージ"]->gaugeGetIsMax()) {
 	//	ui_data["ダッシュゲージ"]->setColor(0.5,0.8,0.8,1);
-		ui_data["OK"]->Active();
+	ui_data["OK"]->Active();
 	//}
-		
+
 }
 
 void UIPlate::gameMainDraw() {
@@ -198,11 +201,11 @@ void UIPlate::gameMainDraw() {
 
 				ci::gl::translate(0.0f, 0.0f, -1.0f);
 				gl::drawString(ui_data[(*it)]->fontGetText(),
-					Vec2f(ui_data[(*it)]->getPosX(), ui_data[(*it)]->getPosY()),
-					Color(ui_data[(*it)]->getColorR(),
-						ui_data[(*it)]->getColorG(),
-						ui_data[(*it)]->getColorB()),
-					font[(*it)]);
+							   Vec2f(ui_data[(*it)]->getPosX(), ui_data[(*it)]->getPosY()),
+							   Color(ui_data[(*it)]->getColorR(),
+									 ui_data[(*it)]->getColorG(),
+									 ui_data[(*it)]->getColorB()),
+							   font[(*it)]);
 
 				ci::gl::popModelView();
 				continue;
@@ -214,11 +217,11 @@ void UIPlate::gameMainDraw() {
 
 				ci::gl::translate(0.0f, 0.0f, -3.0f);
 				gl::drawString(ui_data[(*it)]->timeGetMinutes() + ":" + ui_data[(*it)]->timeGetSeconds() + ":" + ui_data[(*it)]->timeGetFlame(),
-					Vec2f(ui_data[(*it)]->getPosX(), ui_data[(*it)]->getPosY()),
-					Color(ui_data[(*it)]->getColorR(),
-						ui_data[(*it)]->getColorG(),
-						ui_data[(*it)]->getColorB()),
-					font[(*it)]);
+							   Vec2f(ui_data[(*it)]->getPosX(), ui_data[(*it)]->getPosY()),
+							   Color(ui_data[(*it)]->getColorR(),
+									 ui_data[(*it)]->getColorG(),
+									 ui_data[(*it)]->getColorB()),
+							   font[(*it)]);
 
 				ci::gl::popModelView();
 				continue;
@@ -301,11 +304,11 @@ void UIPlate::resultDraw()
 
 				ci::gl::translate(0.0f, 0.0f, -1.0f);
 				gl::drawString(ui_data[(*it)]->fontGetText(),
-					Vec2f(ui_data[(*it)]->getPosX(), ui_data[(*it)]->getPosY()),
-					Color(ui_data[(*it)]->getColorR(),
-						ui_data[(*it)]->getColorG(),
-						ui_data[(*it)]->getColorB()),
-					font[(*it)]);
+							   Vec2f(ui_data[(*it)]->getPosX(), ui_data[(*it)]->getPosY()),
+							   Color(ui_data[(*it)]->getColorR(),
+									 ui_data[(*it)]->getColorG(),
+									 ui_data[(*it)]->getColorB()),
+							   font[(*it)]);
 
 				ci::gl::popModelView();
 				continue;
@@ -317,11 +320,11 @@ void UIPlate::resultDraw()
 
 				ci::gl::translate(0.0f, 0.0f, -3.0f);
 				gl::drawString(ui_data[(*it)]->timeGetMinutes() + ":" + ui_data[(*it)]->timeGetSeconds() + ":" + ui_data[(*it)]->timeGetFlame(),
-					Vec2f(ui_data[(*it)]->getPosX(), ui_data[(*it)]->getPosY()),
-					Color(ui_data[(*it)]->getColorR(),
-						ui_data[(*it)]->getColorG(),
-						ui_data[(*it)]->getColorB()),
-					font[(*it)]);
+							   Vec2f(ui_data[(*it)]->getPosX(), ui_data[(*it)]->getPosY()),
+							   Color(ui_data[(*it)]->getColorR(),
+									 ui_data[(*it)]->getColorG(),
+									 ui_data[(*it)]->getColorB()),
+							   font[(*it)]);
 
 				ci::gl::popModelView();
 				continue;

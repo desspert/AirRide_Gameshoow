@@ -18,12 +18,14 @@ namespace ar {
 		void draw()override;
 		void transDraw()override;
 
-		std::list<Obstacle> getObstacles() {
+		void setCameraPos(const ci::Vec3f& camera_pos_);
+
+		std::list<std::shared_ptr<Obstacle>> getObstacles() {
 			return obstacles;
 		}
 
 		// 一番近い障害物を返す
-		Obstacle getNearestObstacle(ci::Vec3f target_);
+		std::shared_ptr<Obstacle> getNearestObstacle(ci::Vec3f target_);
 
 		// 当たったかどうか
 		bool isHitObstacle(ci::Vec3f target_, float radius_);
@@ -34,13 +36,23 @@ namespace ar {
 
 	private:
 
-		std::list<Obstacle> obstacles;
+		std::list<std::shared_ptr<Obstacle>> obstacles;
 
 		// 湧き範囲直径
 		float pop_range;
 
-		void obstaclePop(float radius_, int count_);
+		// 機雷の大きさ
+		float radius;
+		// 数
+		int count;
+		void obstaclePop();
 
+
+	private:
+
+
+		void eraseObstacle();
+		void respawnObstacle();
 
 	private:// デバッグ用の範囲
 		void testObstaclePopArea();

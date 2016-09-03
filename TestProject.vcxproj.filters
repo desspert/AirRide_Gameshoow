@@ -123,6 +123,15 @@
     <Filter Include="Header Files\Object\GameObject\Skydome">
       <UniqueIdentifier>{5a168fd9-c777-4ab4-98f5-ad97044a5bfb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Object\GameObject\Boss">
+      <UniqueIdentifier>{4144f716-b05a-4563-a623-da6f720ee3d2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\GameObject\Boss\Bullet">
+      <UniqueIdentifier>{03f63661-5eb9-4a34-a8a6-af8ede8422a0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Object\GameObject\Obstacle\Particle">
+      <UniqueIdentifier>{fd0dd868-4456-40cc-87d0-8f734100c465}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\src\MainApp.cpp">
@@ -167,9 +176,6 @@
     <ClCompile Include="..\src\UI\UIBase.cpp">
       <Filter>Ui</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\UI\UIs\TextureUI\TextureUI.cpp">
-      <Filter>Ui\UIs</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\UI\UIs\GaugeUI\GaugeUI.cpp">
       <Filter>Ui\UIs</Filter>
     </ClCompile>
@@ -177,9 +183,6 @@
       <Filter>Ui\UIs</Filter>
     </ClCompile>
     <ClCompile Include="..\src\UI\UIs\CollisionUI\CollisionUI.cpp">
-      <Filter>Ui\UIs</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\UI\UIs\BarCollisionUI\BarCollisionUI.cpp">
       <Filter>Ui\UIs</Filter>
     </ClCompile>
     <ClCompile Include="..\src\UI\UIPlate\UIPlate.cpp">
@@ -248,6 +251,24 @@
     <ClCompile Include="..\src\Object\GameObject\Skydome\Skydome.cpp">
       <Filter>Header Files\Object\GameObject\Skydome</Filter>
     </ClCompile>
+    <ClCompile Include="..\src\Object\GameObject\Boss\Boss.cpp">
+      <Filter>Header Files\Object\GameObject\Boss</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Object\GameObject\Boss\Bullet\Bullet.cpp">
+      <Filter>Header Files\Object\GameObject\Boss\Bullet</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Share\Share.cpp">
+      <Filter>Header Files\Share</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\Object\GameObject\Obstacle\Particle\Particle.cpp">
+      <Filter>Header Files\Object\GameObject\Obstacle\Particle</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\UI\UIs\DecrementTimeUI\DecrementTimeUI.cpp">
+      <Filter>Ui\UIs</Filter>
+    </ClCompile>
+    <ClCompile Include="..\src\UI\UIs\IncrementTimeUI\IncrementTimeUI.cpp">
+      <Filter>Ui\UIs</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\Input\InputEvent.h">
@@ -267,9 +288,6 @@
     </ClInclude>
     <ClInclude Include="..\src\Object\GameObject\GameObjectEntities.h">
       <Filter>Header Files\Object\GameObject</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\Share.h">
-      <Filter>Header Files\Share</Filter>
     </ClInclude>
     <ClInclude Include="..\src\Scene\SceneManager\CreateScene.h">
       <Filter>Header Files\Scene\SceneManager</Filter>
@@ -310,9 +328,6 @@
     <ClInclude Include="..\src\UI\UIBase.h">
       <Filter>Ui</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\UI\UIs\TextureUI\TextureUI.h">
-      <Filter>Ui\UIs</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\UI\UIs\GaugeUI\GaugeUI.h">
       <Filter>Ui\UIs</Filter>
     </ClInclude>
@@ -320,9 +335,6 @@
       <Filter>Ui\UIs</Filter>
     </ClInclude>
     <ClInclude Include="..\src\UI\UIs\CollisionUI\CollisionUI.h">
-      <Filter>Ui\UIs</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\UI\UIs\BarCollisionUI\BarCollisionUI.h">
       <Filter>Ui\UIs</Filter>
     </ClInclude>
     <ClInclude Include="..\src\UI\UIPlate\UIPlate.h">
@@ -423,6 +435,24 @@
     </ClInclude>
     <ClInclude Include="..\src\Object\GameObject\Skydome\Skydome.h">
       <Filter>Header Files\Object\GameObject\Skydome</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Object\GameObject\Boss\Boss.h">
+      <Filter>Header Files\Object\GameObject\Boss</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Object\GameObject\Boss\Bullet\Bullet.h">
+      <Filter>Header Files\Object\GameObject\Boss\Bullet</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Share\Share.h">
+      <Filter>Header Files\Share</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\Object\GameObject\Obstacle\Particle\Particle.h">
+      <Filter>Header Files\Object\GameObject\Obstacle\Particle</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UI\UIs\DecrementTimeUI\DecrementTimeUI.h">
+      <Filter>Ui\UIs</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\UI\UIs\IncrementTimeUI\IncrementTimeUI.h">
+      <Filter>Ui\UIs</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

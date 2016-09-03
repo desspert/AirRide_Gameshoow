@@ -1,6 +1,7 @@
 #include "Title.h"
 #include "../SceneCategory/GameMain.h"
 #include "../../Input/InputEvent.h"
+#include "../../Input/LeapMotion/LeapHands/LeapHands.h"
 
 using namespace ci;
 using namespace ci::app;
@@ -43,19 +44,13 @@ void Title::update()
 		c_Easing::apply(color_r, 0.0f, EasingFunction::ExpoIn, 60);
 		c_Easing::apply(color_g, 0.0f, EasingFunction::ExpoIn, 60);
 		c_Easing::apply(color_b, 0.0f, EasingFunction::ExpoIn, 60);
-		
 	}
-	if (end_flag == true) {
-		end_count++;
-	}
-	if (end_count >= 60) {
-		Scene::createScene<GameMain>(new GameMain());
-	}
+
 }
 
 void Title::draw()
 {
-	ci::gl::clear(ColorA(color_r, color_g,color_b,1.0f));
+	ci::gl::clear(ColorA(color_r, color_g, color_b, 1.0f));
 	ui.titleDraw();
 	entities.drawGameObject();
 }
@@ -80,8 +75,15 @@ void Title::shift()
 		ui.ui_data["スタート"]->setEnd();
 		SoundGet.find("TitleBGM")->disable();
 		SoundGet.find("Start")->start();
-		
+
 		end_flag = true;
+	}
+	if (end_flag == true) {
+		end_count++;
+	}
+	if (end_count >= 60) {
+		//gl::popMatrices();
+		Scene::createScene<GameMain>(new GameMain());
 	}
 }
 

@@ -1,4 +1,5 @@
 #include "Player.h"
+#include "../../../Component/Components/Texture.h"
 
 Player::Player()
 {
@@ -42,6 +43,9 @@ void Player::setup()
 	clash_speed = 0.5f;
 	start_clash_speed = 0.5f;
 	end_clash_speed = 0.5f;
+
+
+//	addComponent<ar::Texture>(ar::Texture("Player"));
 }
 
 void Player::update()
@@ -194,7 +198,7 @@ void Player::moveDestination()
 	/* destination : 移動先 */
 	ci::Vec2f destination_pos =
 		ci::Vec2f(window_size_camera_to_player.x * pos_to_ratio.x,
-			window_size_camera_to_player.y * pos_to_ratio.y);
+				  window_size_camera_to_player.y * pos_to_ratio.y);
 
 	// 前のフレームのプレイヤーの行き先と今現在の行き先を比べて違った場合、更新する
 	if (end_move_pos == destination_pos)

@@ -18,6 +18,7 @@ public:
 private:
 	ar::GameObjectEntities entities;
 
+	bool is_setup = false;
 	UIPlate ui;
 };
 

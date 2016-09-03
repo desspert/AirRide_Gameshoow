@@ -16,6 +16,7 @@
 
 GameMain::GameMain()
 {
+	setup();
 }
 
 void GameMain::setup()
@@ -61,33 +62,51 @@ void GameMain::setup()
 
 	entities.setupGameObject();
 
+	ui.player = entities.getObject<Player>();
+	ui.enemyholder = entities.getObject<EnemyHolder>();
+	ui.gameMainSetup();
+
+
 	if (SoundGet.find("RaceBGM")->isEnabled())
 		SoundGet.find("RaceBGM")->stop();
 	else
 		SoundGet.find("RaceBGM")->start();
 	SoundGet.find("RaceBGM")->setLoopEnabled(true);
+
 }
 
 void GameMain::draw()
 {
+
+	entities.getObject<ar::ObstacleManager>()->setCameraPos(entities.getObject<ar::Camera>()->getCenterOfInterestPoint());
+
 	entities.drawGameObject();
 	entities.transDrawGameObject();
 
 	// ƒ‰ƒCƒg‚ª‚È‚¢•`‰æ
 	entities.laterDrawGameObject();
 	entities.transLaterDrawGameObject();
-	//ui.titleSetup();
 
+
+	ui.gameMainDraw();
+	gl::popMatrices();
 
 }
 
 void GameMain::update()
 {
+	if (!is_setup)
+	{
+		//setup();
+		is_setup = true;
+	}
 
 	//auto start = std::chrono::system_clock::now();
 
 	entities.updateGameObject();
 	entities.laterUpdateGameObject();
+
+	ui.gameMainUpdate();
 
 	/*auto end = std::chrono::system_clock::now();
 	auto d = end - start;

@@ -13,7 +13,8 @@ public:
 	//	return scenemanager;
 	//}
 	SceneManager() {
-		Scene::createScene<GameMain>(new GameMain());
+		Scene::createScene<Title>(new Title());
+		//Scene::createScene<GameMain>(new GameMain());
 	}
 	void update() {
 		Scene::get().update();
